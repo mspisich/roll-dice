@@ -8,12 +8,15 @@ namespace Lab5
         {
             //User decides if they want to roll dice or not.
             Console.WriteLine("Welcome to the Grand Circus Casino! Roll the dice? (y/n):");
-            
-            bool run = false;
+
+            bool run = true;
             run = Continue();
 
             //Track number of times dice have been rolled
             int numRolls = 1;
+
+            //Random number generator
+            Random randomNum = new Random();
 
             //User wants to roll the dice
             while (run)
@@ -23,7 +26,12 @@ namespace Lab5
 
                 //Roll dice
                 Console.WriteLine("Roll " + numRolls + ":");
-                RollDice(dieSides);
+
+                int die1 = RollDice(dieSides, randomNum);
+                int die2 = RollDice(dieSides, randomNum);
+
+                Console.WriteLine(die1);
+                Console.WriteLine(die2);
                 numRolls++;
 
                 //User decides if they want to roll again or leave.
@@ -45,12 +53,10 @@ namespace Lab5
         }
 
         //Roll dice and display results
-        public static void RollDice(int dieSides)
+        public static int RollDice(int dieSides, Random rnd)
         {
-            Random randomNum = new Random();
-            
-            Console.WriteLine(randomNum.Next(1, (dieSides + 1)));
-            Console.WriteLine(randomNum.Next(1, (dieSides + 1)));
+            int diceRoll = rnd.Next(1, (dieSides + 1));
+            return diceRoll;
         }
 
         //Continue program?
